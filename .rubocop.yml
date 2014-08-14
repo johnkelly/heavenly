@@ -1,0 +1,10 @@
+Style/LineLength:
+  Max: 110
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/RescueModifier:
+  Description: 'Avoid using rescue in its modifier form.'
+  Enabled: false

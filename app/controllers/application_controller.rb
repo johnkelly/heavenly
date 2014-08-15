@@ -19,5 +19,7 @@ class ApplicationController < ActionController::API
         @current_person = person
       end
     end
+  rescue
+    head :unauthorized
   end
 end

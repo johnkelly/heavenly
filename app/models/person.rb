@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
   has_one :facebook, dependent: :destroy
+  has_one :buyer,    dependent: :destroy
+  has_one :seller,   dependent: :destroy
 
   validates :auth_token,  presence: true, uniqueness: true
   validates :email,       presence: true

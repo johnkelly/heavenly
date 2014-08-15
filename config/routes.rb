@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   end
 
   resource :person, only: %w(show)
+  resource :address, only: %w(create)
   resource :buyer, only: %w(create)
   resource :seller, only: %w(create)
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815035813) do
+ActiveRecord::Schema.define(version: 20140815064818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,24 @@ ActiveRecord::Schema.define(version: 20140815035813) do
   add_index "accounts", ["person_id"], name: "index_accounts_on_person_id", using: :btree
   add_index "accounts", ["provider_id"], name: "index_accounts_on_provider_id", using: :btree
   add_index "accounts", ["type"], name: "index_accounts_on_type", using: :btree
+
+  create_table "addresses", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "person_id",                            null: false
+    t.string   "street1",                              null: false
+    t.string   "street2"
+    t.string   "city",                                 null: false
+    t.string   "region",                               null: false
+    t.string   "postal_code",                          null: false
+    t.string   "country",                              null: false
+    t.decimal  "latitude",    precision: 10, scale: 6, null: false
+    t.decimal  "longitude",   precision: 10, scale: 6, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["latitude"], name: "index_addresses_on_latitude", using: :btree
+  add_index "addresses", ["longitude"], name: "index_addresses_on_longitude", using: :btree
+  add_index "addresses", ["person_id"], name: "index_addresses_on_person_id", using: :btree
 
   create_table "auth_providers", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "type",                               null: false

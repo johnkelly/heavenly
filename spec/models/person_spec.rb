@@ -7,6 +7,7 @@ RSpec.describe Person, type: :model do
     it { should have_one(:facebook).dependent(:destroy) }
     it { should have_one(:buyer).dependent(:destroy) }
     it { should have_one(:seller).dependent(:destroy) }
+    it { should have_one(:address).dependent(:destroy) }
   end
 
   describe 'validations' do

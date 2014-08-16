@@ -10,6 +10,7 @@ gem 'active_model_serializers', '~> 0.8.1'
 gem 'interactor-rails', '~> 1.0.1'
 gem 'koala', '~> 1.10.0rc'
 gem 'stripe', '~> 1.15.0'
+gem 'pghero', '~> 0.1.3'
 
 group :production do
   gem 'rails_12factor', '~> 0.0.2'

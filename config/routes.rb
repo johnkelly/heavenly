@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resource :address, only: %w(create)
   resource :buyer, only: %w(create)
   resource :seller, only: %w(create)
+
+  mount PgHero::Engine, at: 'pghero'
 end

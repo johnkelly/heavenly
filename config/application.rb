@@ -34,5 +34,8 @@ module Heavenly
         resource '*', headers: :any, methods: [:get, :post, :options, :delete, :put, :patch]
       end
     end
+
+    #PGHERO
+    config.middleware.use ActionDispatch::Flash
   end
 end

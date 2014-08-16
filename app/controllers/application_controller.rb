@@ -8,6 +8,10 @@ class ApplicationController < ActionController::API
   attr_reader :current_person
   helper_method :current_person
 
+  rescue_from ActionController::UnknownFormat, with: :render_not_acceptable
+  rescue_from PG::InvalidTextRepresentation, with: :render_not_found
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   private
 
   def authenticate
@@ -21,5 +25,13 @@ class ApplicationController < ActionController::API
     end
   rescue
     head :unauthorized
+  end
+
+  def render_not_acceptable
+    head :not_acceptable
+  end
+
+  def render_not_found
+    head :not_found
   end
 end

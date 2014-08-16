@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :product do
-    seller_id ""
+    seller_id "6dd3d63f-7fce-4598-acd6-6fdd568a294c"
     title "MyString"
     description "MyText"
     video_url "MyString"

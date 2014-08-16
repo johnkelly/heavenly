@@ -15,4 +15,13 @@ class Person < ActiveRecord::Base
   validates :locale,      presence: true
 
   include Authentication
+
+  after_commit do
+    sold_products.each do |product|
+      product.reindex
+    end
+    purchased_products.each do |product|
+      product.reindex
+    end
+  end
 end

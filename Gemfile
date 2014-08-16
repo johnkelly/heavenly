@@ -11,6 +11,8 @@ gem 'interactor-rails', '~> 1.0.1'
 gem 'koala', '~> 1.10.0rc'
 gem 'stripe', '~> 1.15.0'
 gem 'pghero', '~> 0.1.3'
+gem 'searchkick', '~> 0.8.0'
+gem 'patron', '~> 0.4.18'
 
 group :production do
   gem 'rails_12factor', '~> 0.0.2'

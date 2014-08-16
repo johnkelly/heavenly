@@ -1,5 +1,5 @@
 class Address < ActiveRecord::Base
-  belongs_to :person
+  belongs_to :person, touch: true
 
   validates :person_id,   presence: true
   validates :street1,     presence: true

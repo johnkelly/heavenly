@@ -20,7 +20,17 @@ class Product < ActiveRecord::Base
   searchkick locations: ['location']
 
   def self.search_within_ten_miles(latitude, longitude, term = '*')
-    Product.search term, where: { location: { near: [latitude, longitude], within: '10mi' } }
+    Product.search term,
+                   fields: [:title, :description],
+                   track: {
+                     query: "#{term} 10 miles of #{latitude.round(2)}, #{longitude.round(2)}"
+                   },
+                   where: {
+                     location: { near: [latitude, longitude], within: '10mi' },
+                     sold: false,
+                     expired: false,
+                     on_sale: true
+                   }
   end
 
   def search_data

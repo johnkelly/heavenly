@@ -11,11 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140816030959) do
+ActiveRecord::Schema.define(version: 20140816053421) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
+  enable_extension "pg_stat_statements"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "type",                  null: false
@@ -105,5 +106,21 @@ ActiveRecord::Schema.define(version: 20140816030959) do
   add_index "products", ["on_sale"], name: "index_products_on_on_sale", using: :btree
   add_index "products", ["seller_id"], name: "index_products_on_seller_id", using: :btree
   add_index "products", ["sold"], name: "index_products_on_sold", using: :btree
+
+  create_table "searchjoy_searches", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.string   "search_type"
+    t.string   "query"
+    t.string   "normalized_query"
+    t.integer  "results_count"
+    t.datetime "created_at"
+    t.integer  "convertable_id"
+    t.string   "convertable_type"
+    t.datetime "converted_at"
+  end
+
+  add_index "searchjoy_searches", ["convertable_id", "convertable_type"], name: "index_searchjoy_searches_on_convertable_id_and_convertable_type", using: :btree
+  add_index "searchjoy_searches", ["created_at"], name: "index_searchjoy_searches_on_created_at", using: :btree
+  add_index "searchjoy_searches", ["search_type", "created_at"], name: "index_searchjoy_searches_on_search_type_and_created_at", using: :btree
+  add_index "searchjoy_searches", ["search_type", "normalized_query", "created_at"], name: "index_searchjoy_searches_on_search_type_and_normalized_query_an", using: :btree
 
 end

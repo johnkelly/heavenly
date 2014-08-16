@@ -17,7 +17,9 @@ class Product < ActiveRecord::Base
   scope :on_sale,   -> { where(on_sale: true) }
   scope :off_sale,  -> { where(on_sale: false) }
 
-  searchkick locations: ['location']
+  searchkick locations: ['location'], callbacks: false
+
+  after_commit :reindex_async
 
   def self.search_within_ten_miles(latitude, longitude, term = '*')
     Product.search term,
@@ -35,5 +37,11 @@ class Product < ActiveRecord::Base
 
   def search_data
     ProductSerializer.new(self).serializable_hash
+  end
+
+  private
+
+  def reindex_async
+    ReindexWorker.perform_async(id, Product.to_s)
   end
 end

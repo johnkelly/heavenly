@@ -10,4 +10,5 @@ Rails.application.routes.draw do
 
   mount PgHero::Engine, at: 'admin/pghero'
   mount Searchjoy::Engine, at: 'admin/searchjoy'
+  mount Sidekiq::Web => '/admin/sidekiq'
 end

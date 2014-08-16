@@ -1,5 +1,5 @@
 class Facebook < AuthProvider
-  belongs_to :person
+  belongs_to :person, touch: true
 
   def self.person_json(token)
     graph = Koala::Facebook::API.new(token)

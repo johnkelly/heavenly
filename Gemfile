@@ -14,7 +14,9 @@ gem 'pghero', '~> 0.1.3'
 gem 'searchkick', '~> 0.8.0'
 gem 'patron', '~> 0.4.18'
 gem 'searchjoy', '~> 0.0.6'
-gem 'uglifier'
+gem 'uglifier', '~> 2.5.3'
+gem 'sidekiq', '~> 2.17.7'
+gem 'sinatra', '~> 1.4.5', require: nil
 
 group :production do
   gem 'rails_12factor', '~> 0.0.2'

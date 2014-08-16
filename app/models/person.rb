@@ -16,12 +16,11 @@ class Person < ActiveRecord::Base
 
   include Authentication
 
-  after_commit do
-    sold_products.each do |product|
-      product.reindex
-    end
-    purchased_products.each do |product|
-      product.reindex
-    end
+  after_commit :reindex_async
+
+  private
+
+  def reindex_async
+    ReindexPersonProductsWorker.perform_async(id)
   end
 end

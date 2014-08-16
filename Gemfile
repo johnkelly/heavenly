@@ -14,6 +14,7 @@ gem 'pghero', '~> 0.1.3'
 gem 'searchkick', '~> 0.8.0'
 gem 'patron', '~> 0.4.18'
 gem 'searchjoy', '~> 0.0.6'
+gem 'uglifier'
 
 group :production do
   gem 'rails_12factor', '~> 0.0.2'

@@ -10,12 +10,13 @@ class Product < ActiveRecord::Base
   validates :expired,   inclusion: [true, false]
   validates :sold,      inclusion: [true, false]
 
-  scope :sold,      -> { where(sold: true) }
-  scope :unsold,    -> { where(sold: false) }
-  scope :expired,   -> { where(expired: true) }
-  scope :fresh,     -> { where(expired: false) }
-  scope :on_sale,   -> { where(on_sale: true) }
-  scope :off_sale,  -> { where(on_sale: false) }
+  scope :sold,          -> { where(sold: true) }
+  scope :unsold,        -> { where(sold: false) }
+  scope :expired,       -> { where(expired: true) }
+  scope :fresh,         -> { where(expired: false) }
+  scope :on_sale,       -> { where(on_sale: true) }
+  scope :off_sale,      -> { where(on_sale: false) }
+  scope :search_import, -> { includes(seller: [:facebook, :address], buyer: [:facebook, :address]) }
 
   searchkick locations: ['location'], callbacks: false
 

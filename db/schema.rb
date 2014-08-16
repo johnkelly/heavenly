@@ -11,12 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140815064818) do
+ActiveRecord::Schema.define(version: 20140816030959) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "uuid-ossp"
-  enable_extension "pg_stat_statements"
 
   create_table "accounts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "type",                  null: false
@@ -83,5 +82,28 @@ ActiveRecord::Schema.define(version: 20140815064818) do
   end
 
   add_index "people", ["auth_token"], name: "index_people_on_auth_token", unique: true, using: :btree
+
+  create_table "products", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "seller_id",                   null: false
+    t.string   "title",                       null: false
+    t.text     "description"
+    t.string   "video_url",                   null: false
+    t.integer  "price",                       null: false
+    t.boolean  "on_sale",     default: false, null: false
+    t.datetime "on_sale_at"
+    t.boolean  "expired",     default: false, null: false
+    t.datetime "expires_at"
+    t.boolean  "sold",        default: false, null: false
+    t.datetime "sold_at"
+    t.uuid     "buyer_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "products", ["buyer_id"], name: "index_products_on_buyer_id", using: :btree
+  add_index "products", ["expired"], name: "index_products_on_expired", using: :btree
+  add_index "products", ["on_sale"], name: "index_products_on_on_sale", using: :btree
+  add_index "products", ["seller_id"], name: "index_products_on_seller_id", using: :btree
+  add_index "products", ["sold"], name: "index_products_on_sold", using: :btree
 
 end

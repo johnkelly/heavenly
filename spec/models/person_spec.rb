@@ -8,6 +8,19 @@ RSpec.describe Person, type: :model do
     it { should have_one(:buyer).dependent(:destroy) }
     it { should have_one(:seller).dependent(:destroy) }
     it { should have_one(:address).dependent(:destroy) }
+
+    it do
+      should have_many(:sold_products)
+        .dependent(:destroy)
+        .class_name('Product')
+        .with_foreign_key('seller_id')
+    end
+    it do
+      should have_many(:purchased_products)
+        .dependent(:destroy)
+        .class_name('Product')
+        .with_foreign_key('buyer_id')
+    end
   end
 
   describe 'validations' do

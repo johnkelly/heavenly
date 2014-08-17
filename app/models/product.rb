@@ -34,6 +34,8 @@ class Product < ActiveRecord::Base
                      expired: false,
                      on_sale: true
                    }
+  rescue Searchkick::InvalidQueryError
+    []
   end
 
   def search_data

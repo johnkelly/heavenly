@@ -17,6 +17,7 @@ gem 'searchjoy', '~> 0.0.6'
 gem 'uglifier', '~> 2.5.3'
 gem 'sidekiq', '~> 2.17.7'
 gem 'sinatra', '~> 1.4.5', require: nil
+gem 'newrelic_rpm', '~> 3.7.3.204'
 
 group :production do
   gem 'rails_12factor', '~> 0.0.2'

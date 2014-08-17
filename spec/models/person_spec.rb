@@ -22,6 +22,18 @@ RSpec.describe Person, type: :model do
         .with_foreign_key('buyer_id')
     end
   end
+  it do
+    should have_many(:questions)
+      .dependent(:destroy)
+      .class_name('Question')
+      .with_foreign_key('asker_id')
+  end
+  it do
+    should have_many(:answers)
+      .dependent(:destroy)
+      .class_name('Question')
+      .with_foreign_key('replier_id')
+  end
 
   describe 'validations' do
     it { should validate_presence_of :email }

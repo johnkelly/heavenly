@@ -1,4 +1,6 @@
 class ProductSerializer < ActiveModel::Serializer
+  has_many :questions
+
   attributes :id, :location, :seller, :title, :description,
              :video_url, :price, :on_sale, :on_sale_at, :expired,
              :expires_at, :sold, :sold_at, :buyer, :created_at, :updated_at

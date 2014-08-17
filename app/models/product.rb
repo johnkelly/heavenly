@@ -2,6 +2,8 @@ class Product < ActiveRecord::Base
   belongs_to :seller, foreign_key: :seller_id,  class_name: 'Person'
   belongs_to :buyer,  foreign_key: :buyer_id,   class_name: 'Person'
 
+  has_many :questions, dependent: :destroy
+
   validates :seller_id, presence: true
   validates :title,     presence: true
   validates :video_url, presence: true
@@ -16,7 +18,7 @@ class Product < ActiveRecord::Base
   scope :fresh,         -> { where(expired: false) }
   scope :on_sale,       -> { where(on_sale: true) }
   scope :off_sale,      -> { where(on_sale: false) }
-  scope :search_import, -> { includes(seller: [:facebook, :address], buyer: [:facebook, :address]) }
+  scope :search_import, -> { includes(:questions, seller: [:facebook, :address], buyer: [:facebook, :address]) }
 
   searchkick locations: ['location'], callbacks: false
 

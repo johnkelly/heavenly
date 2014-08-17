@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   end
 
   resources :products,  only: %w(index create update show)
+  resources :questions, only: %w(create) do
+    resources :answers,   only: %w(create)
+  end
+
   resource :person,     only: %w(show)
   resource :address,    only: %w(create)
   resource :buyer,      only: %w(create)

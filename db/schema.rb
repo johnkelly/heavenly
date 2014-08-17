@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140816053421) do
+ActiveRecord::Schema.define(version: 20140817022457) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,6 +106,20 @@ ActiveRecord::Schema.define(version: 20140816053421) do
   add_index "products", ["on_sale"], name: "index_products_on_on_sale", using: :btree
   add_index "products", ["seller_id"], name: "index_products_on_seller_id", using: :btree
   add_index "products", ["sold"], name: "index_products_on_sold", using: :btree
+
+  create_table "questions", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "product_id", null: false
+    t.text     "question",   null: false
+    t.uuid     "asker_id",   null: false
+    t.text     "answer"
+    t.uuid     "replier_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "questions", ["asker_id"], name: "index_questions_on_asker_id", using: :btree
+  add_index "questions", ["product_id"], name: "index_questions_on_product_id", using: :btree
+  add_index "questions", ["replier_id"], name: "index_questions_on_replier_id", using: :btree
 
   create_table "searchjoy_searches", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
     t.string   "search_type"

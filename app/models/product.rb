@@ -2,7 +2,8 @@ class Product < ActiveRecord::Base
   belongs_to :seller, foreign_key: :seller_id,  class_name: 'Person'
   belongs_to :buyer,  foreign_key: :buyer_id,   class_name: 'Person'
 
-  has_many :questions, dependent: :destroy
+  has_many :questions,      dependent: :destroy
+  has_many :sell_receipts,  dependent: :destroy
 
   validates :seller_id, presence: true
   validates :title,     presence: true

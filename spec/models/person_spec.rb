@@ -34,6 +34,7 @@ RSpec.describe Person, type: :model do
       .class_name('Question')
       .with_foreign_key('replier_id')
   end
+  it { should have_many(:sell_receipts).dependent(:destroy) }
 
   describe 'validations' do
     it { should validate_presence_of :email }

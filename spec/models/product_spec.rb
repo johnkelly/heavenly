@@ -6,6 +6,8 @@ RSpec.describe Product, :type => :model do
   describe 'associations' do
     it { should belong_to(:seller).with_foreign_key('seller_id').class_name('Person') }
     it { should belong_to(:buyer).with_foreign_key('buyer_id').class_name('Person') }
+    it { should have_many(:sell_receipts).dependent(:destroy) }
+    it { should have_many(:questions).dependent(:destroy) }
   end
 
   describe 'validations' do

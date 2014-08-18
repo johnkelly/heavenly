@@ -8,6 +8,7 @@ class Person < ActiveRecord::Base
   has_many :purchased_products, dependent: :destroy, class_name: 'Product',   foreign_key: :buyer_id
   has_many :questions,          dependent: :destroy, class_name: 'Question',  foreign_key: :asker_id
   has_many :answers,            dependent: :destroy, class_name: 'Question',  foreign_key: :replier_id
+  has_many :sell_receipts,      dependent: :destroy
 
   validates :auth_token,  presence: true, uniqueness: true
   validates :email,       presence: true

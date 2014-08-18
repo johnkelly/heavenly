@@ -3,7 +3,9 @@ Rails.application.routes.draw do
     resource :facebook, only: %w(create)
   end
 
-  resources :products,  only: %w(index create update show)
+  resources :products,  only: %w(index create update show) do
+    post 'sell', to: 'sells#create'
+  end
   resources :questions, only: %w(create) do
     resources :answers,   only: %w(create)
   end

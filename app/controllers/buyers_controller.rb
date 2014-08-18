@@ -12,6 +12,9 @@ class BuyersController < ApplicationController
   private
 
   def buyer_params
-    params.require(:new_buyer).permit(:token, :card_last_four, :card_type)
+    params
+      .require(:new_buyer)
+      .permit(:token, :card_last_four, :card_type)
+      .merge(person: current_person)
   end
 end

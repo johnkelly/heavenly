@@ -19,4 +19,10 @@ RSpec.describe Address, :type => :model do
     it { should validate_numericality_of(:longitude).is_less_than_or_equal_to(180) }
     it { should validate_numericality_of(:longitude).is_greater_than_or_equal_to(-180) }
   end
+
+  describe "formatted" do
+    it "returns the formatted address" do
+      expect(address.formatted).to eq("MyString\nMyString\nMyString, MyString, MyString")
+    end
+  end
 end

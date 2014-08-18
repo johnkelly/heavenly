@@ -15,4 +15,12 @@ class Address < ActiveRecord::Base
     greater_than_or_equal_to: -180,
     less_than_or_equal_to:     180
   }
+
+  def formatted
+    if street2.present?
+      "#{street1}\n#{street2}\n#{city}, #{region}, #{postal_code}"
+    else
+      "#{street1}\n#{city}, #{region}, #{postal_code}"
+    end
+  end
 end

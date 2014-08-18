@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140817022457) do
+ActiveRecord::Schema.define(version: 20140817222300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -136,5 +136,33 @@ ActiveRecord::Schema.define(version: 20140817022457) do
   add_index "searchjoy_searches", ["created_at"], name: "index_searchjoy_searches_on_created_at", using: :btree
   add_index "searchjoy_searches", ["search_type", "created_at"], name: "index_searchjoy_searches_on_search_type_and_created_at", using: :btree
   add_index "searchjoy_searches", ["search_type", "normalized_query", "created_at"], name: "index_searchjoy_searches_on_search_type_and_normalized_query_an", using: :btree
+
+  create_table "sell_receipts", id: :uuid, default: "uuid_generate_v4()", force: true do |t|
+    t.uuid     "product_id",                                     null: false
+    t.uuid     "person_id",                                      null: false
+    t.string   "product_title",                                  null: false
+    t.string   "product_video_url",                              null: false
+    t.text     "product_description"
+    t.integer  "price",                                          null: false
+    t.datetime "on_sale_at",                                     null: false
+    t.datetime "expires_at",                                     null: false
+    t.string   "provider_id",                                    null: false
+    t.string   "provider",                                       null: false
+    t.string   "card_brand",                                     null: false
+    t.string   "card_funding",                                   null: false
+    t.integer  "card_last_four",                                 null: false
+    t.integer  "card_expiration_month",                          null: false
+    t.integer  "card_expiration_year",                           null: false
+    t.datetime "pickup_at",                                      null: false
+    t.text     "pick_up_address",                                null: false
+    t.decimal  "pick_up_latitude",      precision: 10, scale: 6, null: false
+    t.decimal  "pick_up_longitude",     precision: 10, scale: 6, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "sell_receipts", ["person_id"], name: "index_sell_receipts_on_person_id", using: :btree
+  add_index "sell_receipts", ["product_id"], name: "index_sell_receipts_on_product_id", using: :btree
+  add_index "sell_receipts", ["provider_id"], name: "index_sell_receipts_on_provider_id", using: :btree
 
 end

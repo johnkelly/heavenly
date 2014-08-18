@@ -19,6 +19,7 @@ RSpec.describe Product, :type => :model do
     # it { should validate_inclusion_of(:expired).in_array([true, false]) }
     # it { should validate_inclusion_of(:sold).in_array([true, false]) }
     it { should validate_numericality_of(:price).only_integer }
+    it { should validate_numericality_of(:price).is_greater_than_or_equal_to(99) }
   end
 
   describe 'self.search_within_ten_miles' do

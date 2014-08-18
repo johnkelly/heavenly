@@ -27,6 +27,8 @@ RSpec.describe SellReceipt, :type => :model do
     it { should validate_presence_of :pick_up_address }
     it { should validate_presence_of :pick_up_latitude }
     it { should validate_presence_of :pick_up_longitude }
+    it { should validate_numericality_of(:price).only_integer }
+    it { should validate_numericality_of(:price).is_greater_than_or_equal_to(99) }
     it { should validate_numericality_of(:card_last_four).only_integer }
     it { should validate_numericality_of(:card_expiration_month).only_integer }
     it { should validate_numericality_of(:card_expiration_year).only_integer }

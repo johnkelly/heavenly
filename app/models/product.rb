@@ -8,7 +8,7 @@ class Product < ActiveRecord::Base
   validates :seller_id, presence: true
   validates :title,     presence: true
   validates :video_url, presence: true
-  validates :price,     presence: true, numericality: { only_integer: true }
+  validates :price,     presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 99 }
   validates :on_sale,   inclusion: [true, false]
   validates :expired,   inclusion: [true, false]
   validates :sold,      inclusion: [true, false]

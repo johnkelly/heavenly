@@ -6,7 +6,9 @@ class SellReceipt < ActiveRecord::Base
   validates :person_id,             presence: true
   validates :product_title,         presence: true
   validates :product_video_url,     presence: true
-  validates :price,                 presence: true, numericality: { only_integer: true }
+  validates :price,                 presence: true, numericality: { only_integer: true,
+                                                                    greater_than_or_equal_to: 99
+                                                                  }
   validates :on_sale_at,            presence: true
   validates :expires_at,            presence: true
   validates :provider_id,           presence: true

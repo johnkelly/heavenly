@@ -39,4 +39,20 @@ RSpec.describe Product, :type => :model do
     it { expect(ProductSerializer).to have_received(:new) }
     it { expect(product).to have_received(:serializable_hash) }
   end
+
+  describe 'not_sold' do
+    context 'sold' do
+      it 'returns false' do
+        product.sold = true
+        expect(product.not_sold?).to eq(false)
+      end
+    end
+
+    context 'available' do
+      it 'returns true' do
+        product.sold = false
+        expect(product.not_sold?).to eq(true)
+      end
+    end
+  end
 end

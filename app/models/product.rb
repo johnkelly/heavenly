@@ -45,6 +45,10 @@ class Product < ActiveRecord::Base
     ProductSerializer.new(self).serializable_hash
   end
 
+  def not_sold?
+    !sold?
+  end
+
   private
 
   def reindex_async

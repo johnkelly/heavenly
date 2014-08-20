@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :products,  only: %w(index create update show) do
     post 'sell', to: 'sells#create'
+    post 'buy',  to: 'buys#create'
   end
   resources :questions, only: %w(create) do
     resources :answers,   only: %w(create)
